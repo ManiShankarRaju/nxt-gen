@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Brew Haven Coffee Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6F4E37 0%, #8B6F47 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background: #333;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #D4A574;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            border: 2px solid #6F4E37;
+            color: #6F4E37;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #6F4E37;
+            color: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-image {
+            background: linear-gradient(135deg, #D4A574 0%, #A0826D 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            color: #6F4E37;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            color: #D4A574;
+            font-weight: bold;
+        }
+        
+        .rating {
+            color: #FFB800;
+            font-weight: bold;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #6F4E37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #8B6F47;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #FF6B6B;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>☕ Brew Haven Products</h1>
+        <p>Premium Coffee & Accessories</p>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('coffee')">Coffee Beans</button>
+            <button class="filter-btn" onclick="filterProducts('equipment')">Equipment</button>
+            <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Product 1 -->
+            <div class="product-card" data-category="coffee">
+                <div class="product-image">☕</div>
+                <div class="product-info">
+                    <h3>Premium Arabica Blend</h3>
+                    <p class="product-description">Smooth, rich blend from Ethiopian highlands with notes of chocolate.</p>
+                    <div class="product-details">
+                        <span class="price">$15.99</span>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card" data-category="coffee">
+                <div class="product-image">☕</div>
+                <div class="product-info">
+                    <h3>Dark Roast Espresso</h3>
+                    <p class="product-description">Bold and intense with a deep, complex flavor profile.</p>
+                    <div class="product-details">
+                        <span class="price">$17.99</span>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card" data-category="coffee">
+                <div class="product-image">☕</div>
+                <div class="product-info">
+                    <h3>Light Roast Morning Brew</h3>
+                    <p class="product-description">Bright and fruity with vibrant acidity. Perfect for mornings.</p>
+                    <div class="product-details">
+                        <span class="price">$14.99</span>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <span class="badge">New</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">⚙️</div>
+                <div class="product-info">
+                    <h3>Espresso Machine Pro</h3>
+                    <p class="product-description">Professional-grade espresso machine for home use. 15 bar pressure.</p>
+                    <div class="product-details">
+                        <span class="price">$299.99</span>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">🫖</div>
+                <div class="product-info">
+                    <h3>French Press 34oz</h3>
+                    <p class="product-description">Durable borosilicate glass with stainless steel frame.</p>
+                    <div class="product-details">
+                        <span class="price">$29.99</span>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">⚙️</div>
+                <div class="product-info">
+                    <h3>Burr Grinder Deluxe</h3>
+                    <p class="product-description">Precision grinding with 15 adjustable settings for perfect consistency.</p>
+                    <div class="product-details">
+                        <span class="price">$89.99</span>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <span class="badge">Sale</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">🎁</div>
+                <div class="product-info">
+                    <h3>Coffee Mug Set (4pcs)</h3>
+                    <p class="product-description">Beautiful ceramic mugs with heat-resistant handles. Dishwasher safe.</p>
+                    <div class="product-details">
+                        <span class="price">$34.99</span>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">🧂</div>
+                <div class="product-info">
+                    <h3>Milk Frother Electric</h3>
+                    <p class="product-description">Handheld electric frother with stainless steel whisk for creamy foam.</p>
+                    <div class="product-details">
+                        <span class="price">$24.99</span>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Brew Haven Coffee Shop. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter products
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add click handlers to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('✓ Product added to cart!');
+            });
+        });
+    </script>
+</body>
+</html>
